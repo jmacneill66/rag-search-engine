@@ -1,0 +1,20 @@
+[project]
+name = "rag-search-engine"
+version = "0.1.0"
+description = """
+Build pieces of a make-believe product called "Hoopla" – a Netflix-like streaming service.
+Specifically, building the technologies that power its search bar.
+"""
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dotenv>=0.9.9",
+    "google-genai>=1.60.0",
+    "nltk==3.9.1",
+    "numpy>=2.2.6",
+    "pillow>=12.1.0",
+    "sentence-transformers>=5.2.2",
+]
+authors = [
+    { name = "Jeff MacNeill", email = "jeffrey.macneill@gmail.com" }
+]

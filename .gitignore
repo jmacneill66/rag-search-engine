@@ -1,0 +1,48 @@
+# .gitignore
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+/data/
+
+# Virtual environments
+.venv
+
+# Environment variables
+mynotes.txt
+.env
+.env.local
+
+# Cache files (too large for GitHub)
+cache/
+*.pkl
+*.npy
+*.json.gz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+EOF.git-backup/
