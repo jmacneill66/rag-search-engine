@@ -246,7 +246,7 @@ with bears as the primary antagonists.
 ======================================================================
 ```
 
-### Example 4: Multimodal Query Enhancement
+### Example 3: Multimodal Query Enhancement
 ```bash
 # Use an image to improve search query
 uv run cli/describe_image_cli.py \
