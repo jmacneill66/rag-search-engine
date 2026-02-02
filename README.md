@@ -20,10 +20,11 @@ A production-grade Retrieval-Augmented Generation (RAG) system for semantic movi
 
 ### Advanced Features
 - **Semantic Chunking**: Split long documents into meaningful chunks with overlap
-- **Multi-document Summarization**: Generate comprehensive answers from search results
-- **Citation Generation**: LLM answers with source citations
-- **Direct Question Answering**: Conversational Q&A based on retrieved documents
-- **Full RAG Pipeline**: End-to-end retrieval and generation workflow
+- **Multimodal Query Enhancement**: Rewrite text queries using visual information from images
+- **RAG Pipeline**: Comprehensive retrieval-augmented generation
+- **Multi-document Summarization**: Generate 3-4 sentence overviews from search results
+- **Citation Generation**: LLM answers with source citations [1], [2], etc.
+- **Question Answering**: Direct, concise answers to factual questions
 - **Evaluation Tools**: Precision@k and Recall@k metrics
 
 ## Installation
@@ -117,6 +118,20 @@ uv run cli/augmented_generation_cli.py question "What are the best family movies
 uv run cli/augmented_generation_cli.py rag "romantic comedies set in Europe" --top-k 5
 ```
 
+### Multimodal Search (Image + Text)
+```bash
+# Rewrite a text query using visual information from an image
+uv run cli/describe_image_cli.py \
+  --image data/paddington.jpeg \
+  --query "British bear movie"
+
+# Output: "Rewritten query: Paddington bear London marmalade family film"
+
+# Use with other search commands
+REWRITTEN=$(uv run cli/describe_image_cli.py --image movie_poster.jpg --query "action movie" | grep "Rewritten query:" | cut -d: -f2)
+uv run cli/hybrid_search_cli.py rrf-search "$REWRITTEN" --limit 5
+```
+
 ### Evaluation
 ```bash
 # Evaluate search quality with precision@k and recall@k
@@ -131,6 +146,7 @@ rag-search-engine/
 │   ├── semantic_search_cli.py      # Semantic search commands
 │   ├── hybrid_search_cli.py        # Hybrid search & re-ranking
 │   ├── augmented_generation_cli.py # Summarization & citations
+│   ├── describe_image_cli.py       # Multimodal image query rewriting
 │   └── evaluation_cli.py           # Search quality metrics
 ├── cli/lib/
 │   ├── semantic_search.py          # Semantic search implementation
@@ -229,6 +245,22 @@ encounter a black bear. These films deliver intense wilderness survival scenario
 with bears as the primary antagonists.
 ======================================================================
 ```
+
+### Example 4: Multimodal Query Enhancement
+```bash
+# Use an image to improve search query
+uv run cli/describe_image_cli.py \
+  --image data/movie_poster.jpg \
+  --query "bear movie"
+```
+
+Output:
+```
+Rewritten query: Paddington bear London marmalade sandwich family comedy film
+Total tokens: 45
+```
+
+This enhanced query can then be used for more accurate search results.
 
 ## Evaluation Results
 
